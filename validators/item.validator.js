@@ -26,7 +26,7 @@ export async function validateItemRegistration(req, res, next) {
 export async function validateItemUpdate(req, res, next) {
     try {
         const schema = Joi.object({
-            Quantity: Joi.number().min(0).required
+            Quantity: Joi.number().min(0).required()
         })
         
         const { error } = schema.validate(req.body);

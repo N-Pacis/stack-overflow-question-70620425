@@ -29,6 +29,7 @@ export const createItem = async (req, res) => {
         return res.status(201).send({
             message:
                 "Item created successfully",
+            data: item
         });
     }
     catch (ex) {
@@ -40,11 +41,16 @@ export const updateQuantity = async (req, res) => {
     try {
         let item = await Item.findById(req.params.itemId)
         if (!item) return res.status(404).json("No product found with the given Id")
-        await Item.findByIdAndUpdate(
+        item = await Item.findByIdAndUpdate(
             req.params.itemId,
-            { quantity: req.body.quantity },
-            { new: true },
+            { Quantity: req.body.Quantity },
+            { new: true }
         );
+        return res.status(201).send({
+            message:
+                "Item updated successfully",
+            data: item
+        });      
     }
     catch (ex) {
         return res.status(400).send(ex.message)

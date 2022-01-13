@@ -7,6 +7,6 @@ router.get("/items/all",getItems)
 
 router.post("/items/create", validateItemRegistration, createItem)
 
-router.post("/items/:itemId/update", validateItemUpdate, updateQuantity)
+router.put("/items/:itemId/update", validateItemUpdate, updateQuantity)
 
 export default router;
