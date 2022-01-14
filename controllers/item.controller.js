@@ -16,6 +16,20 @@ export const getItems = async(req,res)=>{
     }
 }
 
+export const getItemById = async(req,res)=>{
+    try{
+        let item = await Item.findById(req.params.itemId);
+        if(!item) return res.status(404).send("No item found with the given id")
+        return res.status(200).send({
+            message: "Item",
+            data: item
+        })
+    }
+    catch(ex){
+        return res.status(500).send(ex.message);
+    }
+}
+
 export const createItem = async (req, res) => {
     try {
         let item = new Item(
